@@ -8,6 +8,7 @@
         private const string AgedBrie = "Aged Brie";
         private const string BackstagePass = "Backstage passes to a TAFKAL80ETC concert";
         private const string Sulfuras = "Sulfuras, Hand of Ragnaros";
+        private const string ConjuredManaCake = "Conjured Mana Cake";
 
         private IList<Item> Items;
 
@@ -44,6 +45,10 @@
             {
                 return new Sulfuras(item);
             }
+            if(IsConjuredManaCake(item))
+            {
+                return new ConjuredManaCake(item);
+            }
             return new ItemBase(item);
         }
 
@@ -55,5 +60,8 @@
 
         private static bool IsSulfuras(Item item) =>
             item.Name == Sulfuras;
+
+        private static bool IsConjuredManaCake(Item item) =>
+            item.Name == ConjuredManaCake;
     }
 }

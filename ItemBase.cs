@@ -1,5 +1,7 @@
 namespace csharpcore
 {
+    using System.Linq;
+
     internal class ItemBase : IUpdateQuality
     {
         protected Item item;
@@ -35,6 +37,13 @@ namespace csharpcore
             }
         }
 
+        protected void DecreaseQualityBy(int decrement)
+        {
+            Enumerable.Range(0,decrement)
+                .ToList()
+                .ForEach(_ => DecreaseQuality());
+        }
+
         protected void SetQualityToMinimum() =>
             item.Quality = 0;
 
@@ -48,10 +57,9 @@ namespace csharpcore
 
         protected void IncrementQualityBy(int increment)
         {
-            for(int increase = 0; increase < increment; ++increase)
-            {
-                IncrementQuality();
-            }
+            Enumerable.Range(0, increment)
+                .ToList()
+                .ForEach(_ => IncrementQuality());
         }
 
         protected bool BelowMaximumQuality() =>
